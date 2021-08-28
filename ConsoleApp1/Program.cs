@@ -20,6 +20,7 @@ namespace ConsoleApp1
                 Console.WriteLine("[3] Resta de dos números");
                 Console.WriteLine("[4] Multiplicación de dos números");
                 Console.WriteLine("[5] División de dos números");
+                Console.WriteLine("[6] Imprimir los primeros 10 números primos");
                 Console.WriteLine("[0] Salir");
                 Console.WriteLine("Ingrese una opción y presione ENTER");
                 opcion = Console.ReadLine();
@@ -62,6 +63,10 @@ namespace ConsoleApp1
                         Console.WriteLine("La división de {0} y {1} es {2}", g, h, Dividir(g, h));
                         Console.ReadKey();
                         break;
+                    case "6":
+                        Primos();
+                        Console.ReadKey();
+                        break;
                 }
             } while (!opcion.Equals("0"));
 
@@ -98,6 +103,30 @@ namespace ConsoleApp1
         static int Dividir(int a, int b)
         {
             return a / b;
+        }
+
+        //10 primeros números primos
+        static void Primos()
+        {
+            int contador = 0, n = 0, i = 1, j = 1;
+            while (n < 10)
+            {
+                j = 1;
+                contador = 0;
+                while (j <= i)
+                {
+                    if (i % j == 0)
+                        contador++;
+                    j++;
+                }
+                if (contador == 2)
+                {
+                    Console.Write(i);
+                    Console.Write(" ");
+                    n++;
+                }
+                i++;
+            }
         }
 
     }
