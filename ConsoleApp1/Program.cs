@@ -21,6 +21,7 @@ namespace ConsoleApp1
                 Console.WriteLine("[4] Multiplicación de dos números");
                 Console.WriteLine("[5] División de dos números");
                 Console.WriteLine("[6] Imprimir los primeros 10 números primos");
+                Console.WriteLine("[7] Conversor de temperatura");
                 Console.WriteLine("[0] Salir");
                 Console.WriteLine("Ingrese una opción y presione ENTER");
                 opcion = Console.ReadLine();
@@ -65,6 +66,10 @@ namespace ConsoleApp1
                         break;
                     case "6":
                         Primos();
+                        Console.ReadKey();
+                        break;
+                    case "7":
+                        Conversion();
                         Console.ReadKey();
                         break;
                 }
@@ -126,6 +131,31 @@ namespace ConsoleApp1
                     n++;
                 }
                 i++;
+            }
+        }
+
+        //Conversor de temperatura 
+        static void Conversion()
+        {
+            string opcion;
+            Console.WriteLine("[1] Centigrados a Fahrenheit");
+            Console.WriteLine("[2] Fahrenheit a Centigrados");
+            opcion = Console.ReadLine();
+            Console.WriteLine("Ingrese la temperatura");
+            double temperatura = Convert.ToDouble(Console.ReadLine());
+            if (opcion.Equals("1"))
+            {
+                double faren = ((9 * temperatura) / 5) + 32;
+                Console.WriteLine("La conversion de {0} grados centígrados es {1} grados fahrenheit", temperatura, faren);
+            }
+            else if (opcion.Equals("2"))
+            {
+                double centi = (5 * (temperatura - 32)) / 9;
+                Console.WriteLine("La conversion de {0} grados fahrenheit es {1} grados centigrados", temperatura, centi);
+            }
+            else
+            {
+                Console.WriteLine("No es un opción válida");
             }
         }
 
