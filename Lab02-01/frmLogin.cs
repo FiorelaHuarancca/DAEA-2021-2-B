@@ -16,5 +16,17 @@ namespace Lab02_01
         {
             InitializeComponent();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_ Click(object sender, EventArgs e)
+        {
+            PrincipalMDI principal = new PrincipalMDI();
+            principal.Show();
+            this.Hide();
+        }
     }
 }
