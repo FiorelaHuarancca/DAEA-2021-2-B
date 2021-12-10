@@ -1,29 +1,37 @@
 ﻿@model List<Lab13.Models.Persona>
 @{
     ViewBag.Title = "Listar";
+
+    var grid = new WebGrid(source: Model, columnNames: new[]{
+            "PersonaID", "Nombre", "Apellido", "FechaNac", "Direccion", "Email"
+        });
 }
 
-<h2>Listado de Personas</h2>
-
-<table class="table table-striped">
-    <tr>
-        <th>PersonaID</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Fecha Nac.</th>
-        <th>Direccion</th>
-        <th>Email</th>
-    </tr>
-    @foreach (var persona in Model)
+<p>
+    @using (Html.BeginForm("Listar", "Persona", FormMethod.Get))
     {
-        <tr>
-            <td>@persona.PersonaID</td>
-            <td>@persona.Nombre</td>
-            <td>@persona.Apellido</td>
-            <td>@persona.FechaNac</td>
-            <td>@persona.Direccion</td>
-            <td>@persona.Email</td>
-        </tr>
+        <b>Buscar por: </b>
+        @Html.RadioButton("buscarpor", "Nombre", true) <text>Nombre</text>
+        @Html.RadioButton("buscarpor", "Apellido") <text>Apellido</text>
+        <br />
+        @Html.TextBox("buscar") <input type="submit" value="Search" />
     }
-</table> 
+</p>
+
+<h2>Listado de Personas</h2>
+@grid.GetHtml(tableStyle: "table table-strisped",
+        columns: grid.Columns(
+            grid.Column(columnName: "PersonaID", header: "PersonaID"),
+            grid.Column(columnName: "Nombre", header: "Nombre"),
+            grid.Column(columnName: "Apellido", header: "Apellido"),
+            grid.Column(columnName: "FechaNac", header: "FechaNac"),
+            grid.Column(columnName: "Direccion", header: "Dirección"),
+            grid.Column(columnName: "Email", header: "Email"),
+            grid.Column(header: "Acciones", format: (item) =>
+                                            Html.ActionLink("Ver", "Mostrar", "Persona",
+                                            new { id = item.PersonaID }, null))
+
+            )
+        )
+
 
